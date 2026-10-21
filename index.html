@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>黑盒選股模型</title>
+<meta name="theme-color" content="#0d1117">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="黑盒選股">
+<link rel="apple-touch-icon" href="icon.png">
+<link rel="icon" type="image/png" href="icon.png">
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --line:#2a3242;
+    --txt:#e8edf4; --dim:#9aa7ba; --gold:#f5c542; --green:#2ebd85; --red:#f6465d;
+    --blue:#4f9cf9; --purple:#b083f0; --orange:#f0a35e;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--txt); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang HK","Microsoft JhengHei",sans-serif; font-size:18px; line-height:1.55; padding:18px 14px 40px;}
+  .wrap{max-width:1180px; margin:0 auto;}
+  h1{font-size:30px; letter-spacing:.5px;}
+  h1 .accent{color:var(--gold);}
+  .sub{color:var(--dim); font-size:16px; margin-top:4px;}
+  .meta{display:flex; flex-wrap:wrap; gap:8px 18px; margin:14px 0 6px; color:var(--dim); font-size:15.5px;}
+  .meta b{color:var(--txt); font-weight:600;}
+  h2{font-size:23px; margin:30px 0 12px; padding-bottom:8px; border-bottom:2px solid var(--line);}
+  h2 .small{font-size:16px; color:var(--dim); font-weight:400;}
+  .scroll{overflow-x:auto; -webkit-overflow-scrolling:touch; border:1px solid var(--line); border-radius:12px; background:var(--panel);}
+  table{border-collapse:collapse; width:100%; min-width:880px;}
+  th,td{padding:10px 12px; text-align:right; white-space:nowrap; font-size:16.5px;}
+  th{background:var(--panel2); color:var(--dim); font-weight:600; position:sticky; top:0;}
+  td:first-child, th:first-child{text-align:center;}
+  td.l, th.l{text-align:left;}
+  tbody tr{border-top:1px solid var(--line);}
+  tbody tr:nth-child(even){background:rgba(255,255,255,.02);}
+  .sym{font-weight:700; font-size:17.5px;}
+  .nm{color:var(--dim); font-size:14.5px; display:block;}
+  .pos{color:var(--green);} .neg{color:var(--red);}
+  .comp{font-weight:800; color:var(--gold); font-size:18px;}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:14px;}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px 16px;}
+  .card h3{font-size:19px; margin-bottom:8px;}
+  .card h3 .dot{display:inline-block; width:11px; height:11px; border-radius:50%; margin-right:8px;}
+  .card ol{list-style:none;}
+  .card li{display:flex; justify-content:space-between; padding:4px 0; font-size:16.5px; border-top:1px dashed rgba(255,255,255,.06);}
+  .card li:first-child{border-top:none;}
+  .card li .s{color:var(--dim);}
+  .chartbox{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px;}
+  .legend{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;}
+  .legend label{font-size:15.5px; background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:4px 12px; cursor:pointer; user-select:none;}
+  .legend input{accent-color:var(--gold); margin-right:5px;}
+  .note{color:var(--dim); font-size:15.5px; margin-top:10px;}
+  .explain{display:grid; grid-template-columns:repeat(auto-fill,minmax(320px,1fr)); gap:14px;}
+  .explain .card p{font-size:16px; color:#c6d0de;}
+  .explain .card p b{color:var(--txt);}
+  footer{margin-top:36px; color:var(--dim); font-size:14.5px; border-top:1px solid var(--line); padding-top:14px;}
+  .err{background:#3a1420; border:1px solid var(--red); color:#ffd7dc; padding:14px; border-radius:10px; font-size:16px;}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>黑盒選股模型 <span class="accent">Inside the Black Box</span></h1>
+  <div class="sub">跟 Rishi K. Narang《Inside the Black Box》第三章六個 Alpha 因子（趨勢、均值回歸、技術情緒、價值、增長、質量），喺 S&amp;P 500 入面做相對排名選股；綜合分係六因子 z-score 等權重混合，組合用第六章規則型等權重。</div>
+  <div class="meta" id="meta">載入緊最新數據…</div>
+
+  <h2>今日綜合選股 Top 30 <span class="small">分數係橫截面 z-score，正數＝跑贏全市場平均；組合建議：30 隻等權重</span></h2>
+  <div class="scroll"><table id="top30">
+    <thead><tr>
+      <th>#</th><th class="l">股票</th><th class="l">板塊</th><th>現價 ($)</th><th>綜合分</th>
+      <th>趨勢</th><th>均值回歸</th><th>技術情緒</th><th>價值</th><th>增長</th><th>質量</th>
+    </tr></thead><tbody></tbody>
+  </table></div>
+
+  <h2>六個模型各自 Top 10</h2>
+  <div class="grid" id="models"></div>
+
+  <h2>回測比較 <span class="small">月度再平衡、各模型 Top 30 等權重、交易成本 0.10%、基本面用 SEC EDGAR 當時已申報數據</span></h2>
+  <div class="chartbox">
+    <div class="legend" id="legend"></div>
+    <div id="chart"></div>
+    <div class="note" id="chartnote"></div>
+  </div>
+  <div class="scroll" style="margin-top:14px;"><table id="stats">
+    <thead><tr><th class="l">模型</th><th>總回報</th><th>年化回報</th><th>Sharpe</th><th>最大回撤</th><th>波動率</th></tr></thead>
+    <tbody></tbody>
+  </table></div>
+
+  <h2>模型說明（書中出處）</h2>
+  <div class="explain">
+    <div class="card"><h3>趨勢 Trend</h3><p>第三章價格類策略：市場共識形成需時，價格會慢慢行去新均衡。實作：中期動量（12 個月回報跳過最近 1 個月）加股價相對 50／200 日均線位置，書中例子正係 60 日對 200 日均線交叉。</p></div>
+    <div class="card"><h3>均值回歸 Mean Reversion</h3><p>第三章價格類策略：短線供求失衡令價格偏離重心，之後會彈返。實作：股價相對短期均線嘅偏離程度（z-score），偏離愈負、反彈分愈高；時間尺度短，同趨勢可以並存。</p></div>
+    <div class="card"><h3>技術情緒 Technical Sentiment</h3><p>第三章價格類策略：用成交量行為量度情緒。書中講研究多數採逆向解讀——異常高換手嘅股票預期跑輸。實作：近期成交量相對長期平均嘅異常程度，逆向計分。</p></div>
+    <div class="card"><h3>價值／收益率 Value/Yield</h3><p>第三章基本面策略：書中強調用收益率形式而唔用市盈率本身。實作：盈利收益率 E/P、賬面值／市值 B/P、自由現金流收益率、股息率，全部用 EDGAR 當時已申報數字計。</p></div>
+    <div class="card"><h3>增長 Growth</h3><p>第三章基本面策略：增長強嘅公司多數正喺度贏緊市場份額。實作：TTM 收入同 EPS 對上年同期嘅增長率（只用當時已知版本）；分析師修訂係書中講嘅情緒變體，呢度冇用。</p></div>
+    <div class="card"><h3>質量 Quality</h3><p>第三章基本面策略：低槓桿、盈利穩定、盈利質量高嘅公司喺壓力市況較捱得住。實作：負債／股東權益（愈低愈好）、ROE、過去 8 季盈利穩定度、淨利率。</p></div>
+    <div class="card"><h3>混合 Blending</h3><p>第三章「Blending Alpha Models」：線性混合係最常用做法，綜合分 = 六個因子 z-score 嘅加權和；呢度用等權重版本（書中特別提及嘅特例），唔用回歸權重，避免過度擬合歷史。</p></div>
+    <div class="card"><h3>組合建構</h3><p>第六章規則型組合建構：綜合分頭 30 隻、每隻等權重（1/30），每月再平衡。冇用優化器，因為輸入估計誤差大嗰陣，等權重通常更穩健——亦係書中嘅取態。</p></div>
+  </div>
+
+  <footer>
+    <p>數據來源：股價 Yahoo Finance；基本面 SEC EDGAR as-reported 時點數據（以申報 filed 日期為準，唔用日後修訂版）；歷史成分股快照處理倖存者偏差（最新快照 <span id="memb"></span>）。</p>
+    <p style="margin-top:6px;">限制：回測由 2022 年 11 月起（47 次月度再平衡），窗口唔算長，嗰段市況對價值同動量較順風，成績唔好當長期定論；市值用當時申報股數近似；已退市股票嘅價格數據可能缺失。本頁只係跟書實作嘅研究工具，唔係買賣建議，歷史回測唔代表未來表現。</p>
+    <p style="margin-top:6px;">iPhone 加落主畫面：用 Safari 開呢頁 → 㩒分享掣 → 「加入主畫面」，之後一撳圖示就睇到最新數據。</p>
+  </footer>
+</div>
+
+<script>
+const MODELS = [
+  ["composite","綜合", "#f5c542"],
+  ["trend","趨勢", "#3fb68b"],
+  ["reversion","均值回歸", "#4f9cf9"],
+  ["sentiment","技術情緒", "#b083f0"],
+  ["value","價值", "#2ebd85"],
+  ["growth","增長", "#f6465d"],
+  ["quality","質量", "#f0a35e"],
+  ["spy","SPY 基準", "#9aa4b2"]
+];
+const SECTOR = {"Information Technology":"資訊科技","Energy":"能源","Financials":"金融","Real Estate":"房地產","Industrials":"工業","Communication Services":"通訊服務","Health Care":"醫療保健","Consumer Discretionary":"非必需消費","Consumer Staples":"必需消費","Materials":"原材料","Utilities":"公用事業"};
+const fmt = (x,d=2)=> (x>0?"+":"") + x.toFixed(d);
+const pct = x => (x*100).toFixed(1)+"%";
+function scoreCell(v){ const c = v>=0? "pos":"neg"; return `<td class="${c}">${fmt(v)}</td>`; }
+
+fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
+  const upd = new Date(d.updatedAt);
+  document.getElementById("meta").innerHTML =
+    `<span>數據更新：<b>${upd.toLocaleString("zh-HK",{hour12:false})}</b></span>` +
+    `<span>股價截至：<b>${d.priceAsOf} 美股收市</b></span>` +
+    `<span>評分宇宙：<b>${d.universeCount} 隻 S&P 500</b></span>` +
+    `<span>EDGAR 基本面覆蓋：<b>${d.edgarCoverage} 隻</b>（最新申報 ${d.edgarLatestFiled}）</span>`;
+  document.getElementById("memb").textContent = d.membershipLatest;
+
+  const tb = document.querySelector("#top30 tbody");
+  tb.innerHTML = d.top30.map(r=>`<tr>
+    <td>${r.rank}</td>
+    <td class="l"><span class="sym">${r.symbol}</span><span class="nm">${r.name}</span></td>
+    <td class="l">${SECTOR[r.sector]||r.sector}</td>
+    <td>${r.price.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+    <td class="comp">${fmt(r.composite)}</td>
+    ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}
+  </tr>`).join("");
+
+  const mg = document.getElementById("models");
+  mg.innerHTML = MODELS.filter(m=>m[0]!=="spy").map(([k,label,color])=>{
+    const items = (d.modelTop10[k]||[]).map(([s,v],i)=>`<li><span>${i+1}. <b>${s}</b></span><span class="s">${fmt(v)}</span></li>`).join("");
+    return `<div class="card"><h3><span class="dot" style="background:${color}"></span>${label}</h3><ol>${items}</ol></div>`;
+  }).join("");
+
+  // stats table
+  const sb = document.querySelector("#stats tbody");
+  sb.innerHTML = MODELS.map(([k,label,color])=>{
+    const s = d.backtest.stats[k]; if(!s) return "";
+    return `<tr><td class="l"><span class="dot" style="display:inline-block;width:11px;height:11px;border-radius:50%;background:${color};margin-right:8px;"></span><b>${label}</b></td>
+      <td class="pos">${pct(s.totalReturn)}</td><td>${pct(s.cagr)}</td><td>${s.sharpe.toFixed(2)}</td>
+      <td class="neg">${pct(s.maxDrawdown)}</td><td>${pct(s.volatility)}</td></tr>`;
+  }).join("");
+
+  // chart
+  const months = d.backtest.months, series = d.backtest.series;
+  const all = Object.values(series).flat();
+  let ymin = Math.min(...all), ymax = Math.max(...all);
+  ymin = Math.floor(ymin*10)/10 - 0.05; ymax = Math.ceil(ymax*10)/10 + 0.05;
+  const W=860, H=380, PL=46, PR=10, PT=12, PB=28;
+  const X = i => PL + (W-PL-PR) * i/(months.length-1);
+  const Y = v => PT + (H-PT-PB) * (1 - (v-ymin)/(ymax-ymin));
+  let grid = "";
+  for(let g=0; g<=4; g++){ const v = ymin + (ymax-ymin)*g/4, y = Y(v);
+    grid += `<line x1="${PL}" y1="${y}" x2="${W-PR}" y2="${y}" stroke="#2a3242" stroke-width="1"/><text x="${PL-6}" y="${y+5}" fill="#9aa7ba" font-size="13" text-anchor="end">${v.toFixed(1)}</text>`; }
+  ["2023","2024","2025","2026"].forEach(yr=>{
+    const i = months.findIndex(m=>m.startsWith(yr+"-01")); if(i<0) return;
+    grid += `<text x="${X(i)}" y="${H-6}" fill="#9aa7ba" font-size="13" text-anchor="middle">${yr}</text>`;
+  });
+  const lines = MODELS.map(([k,label,color])=>{
+    const s = series[k]; if(!s) return "";
+    const pts = s.map((v,i)=>`${X(i).toFixed(1)},${Y(v).toFixed(1)}`).join(" ");
+    const w = k==="composite"?3.2:(k==="spy"?2.6:1.6);
+    return `<polyline id="line-${k}" points="${pts}" fill="none" stroke="${color}" stroke-width="${w}" stroke-linejoin="round" opacity="0.92"/>`;
+  }).join("");
+  document.getElementById("chart").innerHTML =
+    `<svg viewBox="0 0 ${W} ${H}" style="width:100%; height:auto;" role="img" aria-label="回測淨值曲線">${grid}${lines}</svg>`;
+  document.getElementById("legend").innerHTML = MODELS.map(([k,label,color])=>
+    `<label><input type="checkbox" checked data-k="${k}">${label}</label>`).join("");
+  document.querySelectorAll("#legend input").forEach(cb=>cb.addEventListener("change",()=>{
+    const el = document.getElementById("line-"+cb.dataset.k);
+    if(el) el.style.display = cb.checked? "" : "none";
+  }));
+  document.getElementById("chartnote").textContent =
+    `回測期間 ${d.backtest.startDate} 至 ${d.backtest.endDate}，共 ${d.backtest.rebalanceCount} 次月度再平衡；淨值由 1 起步。`;
+}).catch(e=>{
+  document.getElementById("meta").innerHTML = `<span class="err">數據載入失敗，請重新整理頁面再試。</span>`;
+});
+</script>
+</body>
+</html>
