@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-28T06:52:47.587Z",
-  "priceAsOf": "2026-10-27",
+  "updatedAt": "2026-10-29T06:52:28.427Z",
+  "priceAsOf": "2026-10-28",
   "universeCount": 499,
   "edgarCoverage": 499,
-  "edgarLatestFiled": "2026-10-21",
-  "edgarUpdatedAt": "2026-10-28T06:51:54.861Z",
+  "edgarLatestFiled": "2026-10-26",
+  "edgarUpdatedAt": "2026-10-29T06:52:03.072Z",
   "fundamentalsUsed": true,
   "membershipFallback": false,
   "membershipLatest": "2026-08-18",
@@ -15,83 +15,83 @@
       "name": "Sandisk",
       "sector": "Information Technology",
       "price": 1304.84,
-      "composite": 1.4289,
-      "trend": 5.1254,
-      "reversion": 0.7891,
-      "sentiment": 1.823,
-      "value": 0.2043,
-      "growth": 5.0547,
+      "composite": 1.4157,
+      "trend": 5.1541,
+      "reversion": 0.6664,
+      "sentiment": 1.8227,
+      "value": 0.2011,
+      "growth": 5.0616,
       "quality": 0.7803
     },
     {
       "rank": 2,
-      "symbol": "VLO",
-      "name": "Valero Energy",
-      "sector": "Energy",
-      "price": 387.34,
-      "composite": 1.2906,
-      "trend": 2.7306,
-      "reversion": 3.0971,
-      "sentiment": 1.2199,
-      "value": 0.1782,
-      "growth": 1.6327,
-      "quality": 0.3945
-    },
-    {
-      "rank": 3,
-      "symbol": "FIS",
-      "name": "Fidelity National Information Services",
-      "sector": "Financials",
-      "price": 35.61,
-      "composite": 1.231,
-      "trend": -1.3983,
-      "reversion": 1.0093,
-      "sentiment": 0.6053,
-      "value": 3.1827,
-      "growth": 5.09,
-      "quality": 0.0841
-    },
-    {
-      "rank": 4,
       "symbol": "CPT",
       "name": "Camden Property Trust",
       "sector": "Real Estate",
-      "price": 101.52,
-      "composite": 1.1411,
-      "trend": -0.4118,
-      "reversion": -0.2338,
-      "sentiment": 0.3785,
-      "value": 0.5536,
-      "growth": 2.4447,
+      "price": 99.49,
+      "composite": 1.2619,
+      "trend": -0.387,
+      "reversion": 0.3799,
+      "sentiment": 0.546,
+      "value": 0.5842,
+      "growth": 2.4633,
       "quality": 4.1602
     },
     {
-      "rank": 5,
-      "symbol": "MU",
-      "name": "Micron Technology",
-      "sector": "Information Technology",
-      "price": 928.76,
-      "composite": 1.0707,
-      "trend": 5.1254,
-      "reversion": -0.7539,
-      "sentiment": 0.1456,
-      "value": -0.2009,
-      "growth": 5.09,
-      "quality": 1.4649
+      "rank": 3,
+      "symbol": "VLO",
+      "name": "Valero Energy",
+      "sector": "Energy",
+      "price": 388.48,
+      "composite": 1.2108,
+      "trend": 2.6511,
+      "reversion": 2.7115,
+      "sentiment": 1.1642,
+      "value": 0.1691,
+      "growth": 1.5895,
+      "quality": 0.3947
     },
     {
-      "rank": 6,
+      "rank": 4,
+      "symbol": "FIS",
+      "name": "Fidelity National Information Services",
+      "sector": "Financials",
+      "price": 36.48,
+      "composite": 1.0716,
+      "trend": -1.3993,
+      "reversion": 0.2327,
+      "sentiment": 0.4262,
+      "value": 3.0488,
+      "growth": 5.0738,
+      "quality": 0.0843
+    },
+    {
+      "rank": 5,
       "symbol": "MA",
       "name": "Mastercard",
       "sector": "Financials",
-      "price": 609.85,
-      "composite": 1.0374,
-      "trend": -0.1643,
-      "reversion": 0.6554,
-      "sentiment": -0.4448,
-      "value": 3.0082,
-      "growth": 0.1797,
-      "quality": 3.1555
+      "price": 610.31,
+      "composite": 1.0545,
+      "trend": -0.1618,
+      "reversion": 0.5508,
+      "sentiment": -0.2136,
+      "value": 2.9802,
+      "growth": 0.1829,
+      "quality": 3.1552
+    },
+    {
+      "rank": 6,
+      "symbol": "BRK-B",
+      "name": "Berkshire Hathaway",
+      "sector": "Financials",
+      "price": 540.34,
+      "composite": 1.0395,
+      "trend": -0.1843,
+      "reversion": 0.0764,
+      "sentiment": 0.3213,
+      "value": 5.9482,
+      "growth": -0.4717,
+      "quality": 0.3371
     },
     {
       "rank": 7,
@@ -99,361 +99,361 @@
       "name": "Fox Corporation (Class B)",
       "sector": "Communication Services",
       "price": 57.43,
-      "composite": 1.0346,
-      "trend": -0.0985,
-      "reversion": 0.7073,
-      "sentiment": 1.3854,
-      "value": 5.9002,
-      "growth": -0.4772,
-      "quality": -0.0687
+      "composite": 1.0269,
+      "trend": -0.0864,
+      "reversion": 0.5885,
+      "sentiment": 1.3918,
+      "value": 5.9482,
+      "growth": -0.4774,
+      "quality": -0.0685
     },
     {
       "rank": 8,
-      "symbol": "MPC",
-      "name": "Marathon Petroleum",
-      "sector": "Energy",
-      "price": 435.98,
-      "composite": 0.9995,
-      "trend": 2.2407,
-      "reversion": 2.4409,
-      "sentiment": 1.6995,
-      "value": 0.3115,
-      "growth": 0.8458,
-      "quality": -0.4553
+      "symbol": "UDR",
+      "name": "UDR, Inc.",
+      "sector": "Real Estate",
+      "price": 34.71,
+      "composite": 0.9572,
+      "trend": -0.3877,
+      "reversion": 0.3638,
+      "sentiment": -0.941,
+      "value": 0.8384,
+      "growth": 1.6389,
+      "quality": 4.157
     },
     {
       "rank": 9,
-      "symbol": "BRK-B",
-      "name": "Berkshire Hathaway",
-      "sector": "Financials",
-      "price": 542.99,
-      "composite": 0.9657,
-      "trend": -0.2093,
-      "reversion": -0.0721,
-      "sentiment": 0.0408,
-      "value": 5.9002,
-      "growth": -0.4872,
-      "quality": 0.3369
-    },
-    {
-      "rank": 10,
       "symbol": "FOXA",
       "name": "Fox Corporation (Class A)",
       "sector": "Communication Services",
       "price": 64.53,
-      "composite": 0.9437,
-      "trend": -0.1012,
-      "reversion": 0.6369,
-      "sentiment": 0.9047,
-      "value": 5.9002,
-      "growth": -0.4772,
-      "quality": -0.0687
+      "composite": 0.9375,
+      "trend": -0.0891,
+      "reversion": 0.5214,
+      "sentiment": 0.9185,
+      "value": 5.9482,
+      "growth": -0.4774,
+      "quality": -0.0685
+    },
+    {
+      "rank": 10,
+      "symbol": "ERIE",
+      "name": "Erie Indemnity",
+      "sector": "Financials",
+      "price": 246.39,
+      "composite": 0.9239,
+      "trend": -0.8672,
+      "reversion": 0.2238,
+      "sentiment": 1.7845,
+      "value": 5.9482,
+      "growth": -0.6795,
+      "quality": 0.3683
     },
     {
       "rank": 11,
       "symbol": "COF",
       "name": "Capital One",
       "sector": "Financials",
-      "price": 203.44,
-      "composite": 0.9164,
-      "trend": -0.4534,
-      "reversion": -0.0813,
-      "sentiment": -0.7875,
-      "value": 1.6603,
-      "growth": 5.09,
-      "quality": 0.5568
+      "price": 204.88,
+      "composite": 0.8947,
+      "trend": -0.4327,
+      "reversion": -0.219,
+      "sentiment": -0.7642,
+      "value": 1.6184,
+      "growth": 5.0738,
+      "quality": 0.5569
     },
     {
       "rank": 12,
-      "symbol": "ERIE",
-      "name": "Erie Indemnity",
-      "sector": "Financials",
-      "price": 246.88,
-      "composite": 0.9016,
-      "trend": -0.8612,
-      "reversion": 0.0481,
-      "sentiment": 1.8749,
-      "value": 5.9002,
-      "growth": -0.6932,
-      "quality": 0.3681
-    },
-    {
-      "rank": 13,
       "symbol": "TPR",
       "name": "Tapestry, Inc.",
       "sector": "Consumer Discretionary",
-      "price": 111.39,
-      "composite": 0.8817,
-      "trend": -0.4833,
-      "reversion": 1.3089,
-      "sentiment": 1.4322,
-      "value": 0.2277,
-      "growth": 1.9356,
-      "quality": 2.1785
+      "price": 111.24,
+      "composite": 0.8764,
+      "trend": -0.4743,
+      "reversion": 1.1038,
+      "sentiment": 1.6172,
+      "value": 0.225,
+      "growth": 1.9127,
+      "quality": 2.1783
+    },
+    {
+      "rank": 13,
+      "symbol": "MPC",
+      "name": "Marathon Petroleum",
+      "sector": "Energy",
+      "price": 440.77,
+      "composite": 0.8734,
+      "trend": 2.2858,
+      "reversion": 1.6531,
+      "sentiment": 1.5821,
+      "value": 0.2874,
+      "growth": 0.8388,
+      "quality": -0.4551
     },
     {
       "rank": 14,
-      "symbol": "UDR",
-      "name": "UDR, Inc.",
-      "sector": "Real Estate",
-      "price": 35.61,
-      "composite": 0.8418,
-      "trend": -0.4136,
-      "reversion": -0.4375,
-      "sentiment": -0.8897,
-      "value": 0.7926,
-      "growth": 1.6366,
-      "quality": 4.1569
-    },
-    {
-      "rank": 15,
       "symbol": "SPG",
       "name": "Simon Property Group",
       "sector": "Real Estate",
-      "price": 212.28,
-      "composite": 0.819,
-      "trend": 0.1108,
-      "reversion": -0.5479,
-      "sentiment": 0.1463,
-      "value": 5.9002,
-      "growth": 0.3631,
-      "quality": -1.3263
+      "price": 211.24,
+      "composite": 0.8728,
+      "trend": 0.0971,
+      "reversion": -0.2661,
+      "sentiment": 0.2043,
+      "value": 5.9482,
+      "growth": 0.3627,
+      "quality": -1.3262
     },
     {
-      "rank": 16,
+      "rank": 15,
       "symbol": "NVDA",
       "name": "Nvidia",
       "sector": "Information Technology",
-      "price": 217.94,
-      "composite": 0.7961,
-      "trend": 0.2646,
-      "reversion": 0.0417,
-      "sentiment": 0.8764,
-      "value": -0.7942,
-      "growth": 3.5398,
+      "price": 215.38,
+      "composite": 0.829,
+      "trend": 0.2002,
+      "reversion": 0.2323,
+      "sentiment": 0.9403,
+      "value": -0.7844,
+      "growth": 3.5674,
       "quality": 1.8267
     },
     {
+      "rank": 16,
+      "symbol": "MU",
+      "name": "Micron Technology",
+      "sector": "Information Technology",
+      "price": 983.23,
+      "composite": 0.8267,
+      "trend": 5.1541,
+      "reversion": -2.3942,
+      "sentiment": 0.1463,
+      "value": -0.2633,
+      "growth": 5.0738,
+      "quality": 1.465
+    },
+    {
       "rank": 17,
-      "symbol": "BXP",
-      "name": "BXP, Inc.",
-      "sector": "Real Estate",
-      "price": 60.89,
-      "composite": 0.745,
-      "trend": -0.4609,
-      "reversion": -0.2803,
-      "sentiment": -0.1229,
-      "value": 0.9477,
-      "growth": 4.9386,
-      "quality": -0.3296
+      "symbol": "HIG",
+      "name": "Hartford (The)",
+      "sector": "Financials",
+      "price": 130.04,
+      "composite": 0.7842,
+      "trend": -0.2636,
+      "reversion": 1.2779,
+      "sentiment": -0.5197,
+      "value": 1.4508,
+      "growth": -0.5545,
+      "quality": 3.099
     },
     {
       "rank": 18,
       "symbol": "AMCR",
       "name": "Amcor",
       "sector": "Materials",
-      "price": 45.94,
-      "composite": 0.7278,
-      "trend": -0.011,
-      "reversion": -0.5401,
-      "sentiment": 0.8339,
-      "value": 1.116,
-      "growth": 3.7211,
-      "quality": -0.3532
+      "price": 45.66,
+      "composite": 0.7819,
+      "trend": -0.0473,
+      "reversion": -0.1761,
+      "sentiment": 0.8696,
+      "value": 1.119,
+      "growth": 3.7219,
+      "quality": -0.353
     },
     {
       "rank": 19,
-      "symbol": "CME",
-      "name": "CME Group",
-      "sector": "Financials",
-      "price": 293.48,
-      "composite": 0.7078,
-      "trend": -0.294,
-      "reversion": 0.5957,
-      "sentiment": -0.6166,
-      "value": 4.8715,
-      "growth": -0.3498,
-      "quality": 0.1588
+      "symbol": "ESS",
+      "name": "Essex Property Trust",
+      "sector": "Real Estate",
+      "price": 261.42,
+      "composite": 0.7565,
+      "trend": -0.0996,
+      "reversion": 1.3863,
+      "sentiment": -0.0254,
+      "value": -0.1544,
+      "growth": -1.0069,
+      "quality": 4.1602
     },
     {
       "rank": 20,
       "symbol": "KEY",
       "name": "KeyCorp",
       "sector": "Financials",
-      "price": 21.15,
-      "composite": 0.7035,
-      "trend": 0.0317,
-      "reversion": -0.5844,
-      "sentiment": -1.766,
-      "value": 1.0177,
-      "growth": 5.0786,
-      "quality": 0.2453
+      "price": 21.2,
+      "composite": 0.7099,
+      "trend": 0.0373,
+      "reversion": -0.5021,
+      "sentiment": -1.7248,
+      "value": 1.0037,
+      "growth": 5.0045,
+      "quality": 0.2455
     },
     {
       "rank": 21,
-      "symbol": "PSX",
-      "name": "Phillips 66",
-      "sector": "Energy",
-      "price": 268.53,
-      "composite": 0.7033,
-      "trend": 1.936,
-      "reversion": 2.3801,
-      "sentiment": 1.4883,
-      "value": 0.0728,
-      "growth": 0.811,
-      "quality": -1.9518
+      "symbol": "CME",
+      "name": "CME Group",
+      "sector": "Financials",
+      "price": 294.04,
+      "composite": 0.7036,
+      "trend": -0.2908,
+      "reversion": 0.5105,
+      "sentiment": -0.538,
+      "value": 4.8465,
+      "growth": -0.3508,
+      "quality": 0.1589
     },
     {
       "rank": 22,
-      "symbol": "HIG",
-      "name": "Hartford (The)",
-      "sector": "Financials",
-      "price": 133.51,
-      "composite": 0.6819,
-      "trend": -0.2722,
-      "reversion": 0.6529,
-      "sentiment": -0.5609,
-      "value": 1.3929,
-      "growth": -0.551,
-      "quality": 3.0989
+      "symbol": "CMCSA",
+      "name": "Comcast",
+      "sector": "Communication Services",
+      "price": 21.57,
+      "composite": 0.6847,
+      "trend": -0.7744,
+      "reversion": 0.885,
+      "sentiment": -0.5344,
+      "value": 5.775,
+      "growth": -0.7679,
+      "quality": -0.0417
     },
     {
       "rank": 23,
+      "symbol": "BXP",
+      "name": "BXP, Inc.",
+      "sector": "Real Estate",
+      "price": 61.48,
+      "composite": 0.6716,
+      "trend": -0.4791,
+      "reversion": -0.4559,
+      "sentiment": -0.3406,
+      "value": 0.9165,
+      "growth": 4.8608,
+      "quality": -0.3294
+    },
+    {
+      "rank": 24,
+      "symbol": "ALL",
+      "name": "Allstate",
+      "sector": "Financials",
+      "price": 250.2,
+      "composite": 0.6134,
+      "trend": 0.2138,
+      "reversion": 0.1952,
+      "sentiment": 0.7041,
+      "value": 2.3324,
+      "growth": -0.0604,
+      "quality": 0.3198
+    },
+    {
+      "rank": 25,
       "symbol": "RDDT",
       "name": "Reddit",
       "sector": "Communication Services",
       "price": 136.46,
-      "composite": 0.6228,
-      "trend": -1.0012,
-      "reversion": 3.0956,
-      "sentiment": 1.6263,
-      "value": -0.3438,
-      "growth": 2.8873,
-      "quality": 0.5468
-    },
-    {
-      "rank": 24,
-      "symbol": "CMCSA",
-      "name": "Comcast",
-      "sector": "Communication Services",
-      "price": 21.84,
-      "composite": 0.6186,
-      "trend": -0.7629,
-      "reversion": 0.5526,
-      "sentiment": -0.6193,
-      "value": 5.7238,
-      "growth": -0.7665,
-      "quality": -0.0418
-    },
-    {
-      "rank": 25,
-      "symbol": "ESS",
-      "name": "Essex Property Trust",
-      "sector": "Real Estate",
-      "price": 274.85,
-      "composite": 0.5936,
-      "trend": -0.1321,
-      "reversion": 0.0598,
-      "sentiment": 0.1842,
-      "value": -0.2078,
-      "growth": -1.0034,
-      "quality": 4.1602
+      "composite": 0.5898,
+      "trend": -0.9918,
+      "reversion": 2.832,
+      "sentiment": 1.629,
+      "value": -0.3435,
+      "growth": 2.9109,
+      "quality": 0.547
     },
     {
       "rank": 26,
+      "symbol": "EXR",
+      "name": "Extra Space Storage",
+      "sector": "Real Estate",
+      "price": 144.75,
+      "composite": 0.5858,
+      "trend": -0.4275,
+      "reversion": -0.5324,
+      "sentiment": -0.3379,
+      "value": 0.5468,
+      "growth": -0.222,
+      "quality": 4.1602
+    },
+    {
+      "rank": 27,
       "symbol": "TWLO",
       "name": "Twilio",
       "sector": "Information Technology",
       "price": 254.56,
-      "composite": 0.5907,
-      "trend": 3.1063,
-      "reversion": 0.9831,
-      "sentiment": -2.3027,
-      "value": -0.466,
-      "growth": 5.09,
-      "quality": -0.0181
-    },
-    {
-      "rank": 27,
-      "symbol": "EXR",
-      "name": "Extra Space Storage",
-      "sector": "Real Estate",
-      "price": 144.55,
-      "composite": 0.5884,
-      "trend": -0.4685,
-      "reversion": -0.6733,
-      "sentiment": -0.1467,
-      "value": 0.5562,
-      "growth": -0.223,
-      "quality": 4.1602
+      "composite": 0.5814,
+      "trend": 3.1281,
+      "reversion": 0.8511,
+      "sentiment": -2.2395,
+      "value": -0.4644,
+      "growth": 5.0738,
+      "quality": -0.0179
     },
     {
       "rank": 28,
-      "symbol": "MRVL",
-      "name": "Marvell Technology",
-      "sector": "Information Technology",
-      "price": 243.57,
-      "composite": 0.5825,
-      "trend": 3.8748,
-      "reversion": -0.6943,
-      "sentiment": 0.4241,
-      "value": -1.1345,
-      "growth": 5.09,
-      "quality": 0.0243
+      "symbol": "V",
+      "name": "Visa Inc.",
+      "sector": "Financials",
+      "price": 400.6,
+      "composite": 0.5786,
+      "trend": -0.0016,
+      "reversion": 0.4743,
+      "sentiment": 0.4676,
+      "value": 0.8693,
+      "growth": 0.0251,
+      "quality": 1.2476
     },
     {
       "rank": 29,
+      "symbol": "PSX",
+      "name": "Phillips 66",
+      "sector": "Energy",
+      "price": 273.76,
+      "composite": 0.5726,
+      "trend": 1.9272,
+      "reversion": 1.387,
+      "sentiment": 1.4149,
+      "value": 0.0456,
+      "growth": 0.9821,
+      "quality": -1.9516
+    },
+    {
+      "rank": 30,
       "symbol": "PLTR",
       "name": "Palantir Technologies",
       "sector": "Information Technology",
       "price": 198.73,
-      "composite": 0.5748,
-      "trend": 0.0629,
-      "reversion": -0.0889,
-      "sentiment": 2.044,
-      "value": -0.9429,
-      "growth": 3.9381,
-      "quality": 0.8856
-    },
-    {
-      "rank": 30,
-      "symbol": "XOM",
-      "name": "ExxonMobil",
-      "sector": "Energy",
-      "price": 179.91,
-      "composite": 0.565,
-      "trend": 0.6441,
-      "reversion": 0.1016,
-      "sentiment": 1.0597,
-      "value": -0.1362,
-      "growth": null,
-      "quality": 1.1181
+      "composite": 0.5679,
+      "trend": 0.0755,
+      "reversion": -0.1695,
+      "sentiment": 2.0403,
+      "value": -0.9382,
+      "growth": 3.9602,
+      "quality": 0.8857
     }
   ],
   "modelTop10": {
     "composite": [
       [
         "SNDK",
-        1.43
-      ],
-      [
-        "VLO",
-        1.29
-      ],
-      [
-        "FIS",
-        1.23
+        1.42
       ],
       [
         "CPT",
-        1.14
+        1.26
       ],
       [
-        "MU",
+        "VLO",
+        1.21
+      ],
+      [
+        "FIS",
         1.07
       ],
       [
         "MA",
+        1.05
+      ],
+      [
+        "BRK-B",
         1.04
       ],
       [
@@ -461,130 +461,126 @@
         1.03
       ],
       [
-        "MPC",
-        1.0
-      ],
-      [
-        "BRK-B",
-        0.97
+        "UDR",
+        0.96
       ],
       [
         "FOXA",
         0.94
+      ],
+      [
+        "ERIE",
+        0.92
       ]
     ],
     "trend": [
       [
         "LITE",
-        5.13
+        5.15
       ],
       [
         "MU",
-        5.13
+        5.15
       ],
       [
         "MRNA",
-        5.13
+        5.15
       ],
       [
         "SNDK",
-        5.13
+        5.15
       ],
       [
         "STX",
-        5.13
+        5.15
       ],
       [
         "DELL",
-        5.12
+        5.15
       ],
       [
         "WDC",
-        4.3
+        4.45
       ],
       [
         "MRVL",
-        3.87
-      ],
-      [
-        "INTC",
-        3.67
+        3.85
       ],
       [
         "HPE",
-        3.62
+        3.64
+      ],
+      [
+        "INTC",
+        3.51
       ]
     ],
     "reversion": [
       [
         "BA",
-        3.1
+        2.83
       ],
       [
-        "FICO",
-        3.1
+        "CSGP",
+        2.83
       ],
       [
-        "META",
-        3.1
-      ],
-      [
-        "VLO",
-        3.1
-      ],
-      [
-        "XYL",
-        3.1
+        "FFIV",
+        2.83
       ],
       [
         "RDDT",
-        3.1
+        2.83
       ],
       [
-        "NFLX",
+        "XYL",
+        2.83
+      ],
+      [
+        "FICO",
+        2.83
+      ],
+      [
+        "CHRW",
+        2.83
+      ],
+      [
+        "META",
+        2.76
+      ],
+      [
+        "VLO",
+        2.71
+      ],
+      [
+        "LII",
         2.68
-      ],
-      [
-        "DASH",
-        2.59
-      ],
-      [
-        "HWM",
-        2.48
-      ],
-      [
-        "MPC",
-        2.44
       ]
     ],
     "sentiment": [
       [
         "APTV",
-        2.16
-      ],
-      [
-        "FERG",
-        2.16
-      ],
-      [
-        "CRM",
-        2.16
-      ],
-      [
-        "TRMB",
-        2.16
-      ],
-      [
-        "WDAY",
-        2.16
-      ],
-      [
-        "DDOG",
         2.15
       ],
       [
         "AZO",
-        2.1
+        2.15
+      ],
+      [
+        "CRM",
+        2.15
+      ],
+      [
+        "TRMB",
+        2.15
+      ],
+      [
+        "WDAY",
+        2.15
+      ],
+      [
+        "DDOG",
+        2.15
       ],
       [
         "ABNB",
@@ -595,88 +591,92 @@
         2.04
       ],
       [
+        "AVY",
+        1.93
+      ],
+      [
         "BR",
-        1.97
+        1.93
       ]
     ],
     "value": [
       [
         "BRK-B",
-        5.9
+        5.95
       ],
       [
         "ERIE",
-        5.9
+        5.95
       ],
       [
         "FOXA",
-        5.9
+        5.95
       ],
       [
         "FOX",
-        5.9
+        5.95
       ],
       [
         "SPG",
-        5.9
+        5.95
       ],
       [
         "CMCSA",
-        5.72
+        5.77
       ],
       [
         "CME",
-        4.87
+        4.85
       ],
       [
         "FIS",
-        3.18
+        3.05
       ],
       [
         "MA",
-        3.01
+        2.98
       ],
       [
         "CHTR",
-        2.5
+        2.47
       ]
     ],
     "growth": [
       [
         "COF",
-        5.09
+        5.07
       ],
       [
         "FIS",
-        5.09
+        5.07
       ],
       [
         "MRVL",
-        5.09
+        5.07
       ],
       [
         "MU",
-        5.09
+        5.07
       ],
       [
         "TWLO",
-        5.09
-      ],
-      [
-        "KEY",
-        5.08
+        5.07
       ],
       [
         "SNDK",
-        5.05
+        5.06
+      ],
+      [
+        "KEY",
+        5.0
       ],
       [
         "BXP",
-        4.94
+        4.86
       ],
       [
         "PLTR",
-        3.94
+        3.96
       ],
       [
         "AMCR",
@@ -876,7 +876,7 @@
     ],
     "series": {
       "composite": [
-        1.0,
+        1,
         1.0343,
         1.0213,
         1.0071,
@@ -1020,7 +1020,7 @@
         6.1005
       ],
       "trend": [
-        1.0,
+        1,
         1.0572,
         1.0577,
         1.0072,
@@ -1164,7 +1164,7 @@
         4.6498
       ],
       "reversion": [
-        1.0,
+        1,
         1.0827,
         1.0578,
         1.0769,
@@ -1308,7 +1308,7 @@
         3.1825
       ],
       "sentiment": [
-        1.0,
+        1,
         1.0528,
         1.0376,
         1.02,
@@ -1452,7 +1452,7 @@
         2.2814
       ],
       "value": [
-        1.0,
+        1,
         1.0643,
         1.035,
         1.0548,
@@ -1596,7 +1596,7 @@
         8.5436
       ],
       "growth": [
-        1.0,
+        1,
         1.0422,
         1.0311,
         1.0325,
@@ -1740,7 +1740,7 @@
         3.2717
       ],
       "quality": [
-        1.0,
+        1,
         1.0688,
         1.0542,
         1.0419,
@@ -1884,7 +1884,7 @@
         3.8024
       ],
       "spy": [
-        1.0,
+        1,
         1.0562,
         1.0396,
         1.0498,
