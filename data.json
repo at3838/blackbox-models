@@ -1,10 +1,10 @@
 {
-  "updatedAt": "2026-10-31T07:52:43.929Z",
+  "updatedAt": "2026-11-01T07:52:39.923Z",
   "priceAsOf": "2026-10-30",
   "universeCount": 499,
   "edgarCoverage": 499,
   "edgarLatestFiled": "2026-10-30",
-  "edgarUpdatedAt": "2026-10-31T07:51:51.808Z",
+  "edgarUpdatedAt": "2026-11-01T07:51:48.095Z",
   "fundamentalsUsed": true,
   "membershipFallback": false,
   "membershipLatest": "2026-08-18",
@@ -20,8 +20,8 @@
       "reversion": 2.7814,
       "sentiment": 1.4496,
       "value": 0.4079,
-      "growth": 4.9098,
-      "quality": 0.7688
+      "growth": 4.9097,
+      "quality": 0.7691
     },
     {
       "rank": 2,
@@ -35,7 +35,7 @@
       "sentiment": 1.0075,
       "value": 0.6137,
       "growth": 2.5442,
-      "quality": 4.173
+      "quality": 4.1734
     },
     {
       "rank": 3,
@@ -48,8 +48,8 @@
       "reversion": 0.6918,
       "sentiment": 0.4422,
       "value": -0.1315,
-      "growth": 4.9098,
-      "quality": 1.4574
+      "growth": 4.9097,
+      "quality": 1.4577
     },
     {
       "rank": 4,
@@ -62,8 +62,8 @@
       "reversion": 0.8944,
       "sentiment": 2.0332,
       "value": 5.8288,
-      "growth": -0.5076,
-      "quality": -0.0831
+      "growth": -0.5077,
+      "quality": -0.0828
     },
     {
       "rank": 5,
@@ -77,7 +77,7 @@
       "sentiment": -2.4462,
       "value": -0.3139,
       "growth": 4.8927,
-      "quality": -0.0341
+      "quality": -0.0339
     },
     {
       "rank": 6,
@@ -89,9 +89,9 @@
       "trend": 3.976,
       "reversion": 3.5463,
       "sentiment": -0.139,
-      "value": -1.1145,
-      "growth": 4.9098,
-      "quality": 0.0104
+      "value": -1.1146,
+      "growth": 4.9097,
+      "quality": 0.0106
     },
     {
       "rank": 7,
@@ -99,13 +99,13 @@
       "name": "Valero Energy",
       "sector": "Energy",
       "price": 399.66,
-      "composite": 1.0502,
+      "composite": 1.0503,
       "trend": 3.0668,
       "reversion": 0.865,
       "sentiment": 1.086,
       "value": 0.1533,
       "growth": 1.9959,
-      "quality": 0.3861
+      "quality": 0.3864
     },
     {
       "rank": 8,
@@ -118,8 +118,8 @@
       "reversion": 0.0718,
       "sentiment": 0.4632,
       "value": 5.8288,
-      "growth": -0.4262,
-      "quality": 0.3263
+      "growth": -0.4264,
+      "quality": 0.3265
     },
     {
       "rank": 9,
@@ -141,13 +141,13 @@
       "name": "Nvidia",
       "sector": "Information Technology",
       "price": 204.64,
-      "composite": 0.9651,
+      "composite": 0.9652,
       "trend": 0.0458,
       "reversion": 1.1552,
       "sentiment": 1.0077,
-      "value": -0.7722,
-      "growth": 3.6584,
-      "quality": 1.8208
+      "value": -0.7723,
+      "growth": 3.6585,
+      "quality": 1.8211
     },
     {
       "rank": 11,
@@ -159,9 +159,9 @@
       "trend": -0.4541,
       "reversion": -0.0197,
       "sentiment": -0.6127,
-      "value": 1.7088,
-      "growth": 4.9098,
-      "quality": 0.5775
+      "value": 1.7087,
+      "growth": 4.9097,
+      "quality": 0.5778
     },
     {
       "rank": 12,
@@ -169,13 +169,13 @@
       "name": "Fortinet",
       "sector": "Information Technology",
       "price": 136.08,
-      "composite": 0.897,
+      "composite": 0.8971,
       "trend": 2.3809,
       "reversion": 4.2865,
       "sentiment": -0.5331,
       "value": -0.5495,
       "growth": 0.3219,
-      "quality": 1.5667
+      "quality": 1.5671
     },
     {
       "rank": 13,
@@ -188,8 +188,8 @@
       "reversion": 0.8498,
       "sentiment": 0.561,
       "value": 5.8288,
-      "growth": -0.5076,
-      "quality": -0.0831
+      "growth": -0.5077,
+      "quality": -0.0828
     },
     {
       "rank": 14,
@@ -202,8 +202,8 @@
       "reversion": 3.0714,
       "sentiment": 1.0181,
       "value": -0.5607,
-      "growth": -0.3658,
-      "quality": 0.3609
+      "growth": -0.3659,
+      "quality": 0.3611
     },
     {
       "rank": 15,
@@ -216,8 +216,8 @@
       "reversion": -0.8725,
       "sentiment": 0.3027,
       "value": 2.9711,
-      "growth": 4.9098,
-      "quality": 0.0799
+      "growth": 4.9097,
+      "quality": 0.0801
     },
     {
       "rank": 16,
@@ -230,8 +230,8 @@
       "reversion": -0.4597,
       "sentiment": -0.3916,
       "value": 2.9521,
-      "growth": -0.0388,
-      "quality": 3.2206
+      "growth": -0.0389,
+      "quality": 3.2211
     },
     {
       "rank": 17,
@@ -239,13 +239,13 @@
       "name": "UDR, Inc.",
       "sector": "Real Estate",
       "price": 35.52,
-      "composite": 0.8545,
+      "composite": 0.8546,
       "trend": -0.311,
       "reversion": -0.0807,
       "sentiment": -1.0074,
-      "value": 0.8546,
+      "value": 0.8545,
       "growth": 1.3206,
-      "quality": 4.1698
+      "quality": 4.1702
     },
     {
       "rank": 18,
@@ -257,9 +257,9 @@
       "trend": 2.6504,
       "reversion": 0.6529,
       "sentiment": 1.6875,
-      "value": 0.3051,
+      "value": 0.305,
       "growth": 1.0238,
-      "quality": -0.4556
+      "quality": -0.4554
     },
     {
       "rank": 19,
@@ -267,13 +267,13 @@
       "name": "Simon Property Group",
       "sector": "Real Estate",
       "price": 217.75,
-      "composite": 0.8196,
+      "composite": 0.8197,
       "trend": 0.1141,
       "reversion": -0.6318,
       "sentiment": 0.1264,
       "value": 5.8288,
-      "growth": 0.4415,
-      "quality": -1.2232
+      "growth": 0.4414,
+      "quality": -1.2223
     },
     {
       "rank": 20,
@@ -285,9 +285,9 @@
       "trend": -0.4126,
       "reversion": -0.2982,
       "sentiment": 1.9526,
-      "value": 0.1865,
+      "value": 0.1864,
       "growth": 2.3459,
-      "quality": 2.2346
+      "quality": 2.235
     },
     {
       "rank": 21,
@@ -295,13 +295,13 @@
       "name": "KeyCorp",
       "sector": "Financials",
       "price": 21.12,
-      "composite": 0.7727,
+      "composite": 0.7728,
       "trend": 0.0311,
       "reversion": 0.0016,
       "sentiment": -1.6392,
       "value": 1.0861,
       "growth": 4.7398,
-      "quality": 0.2919
+      "quality": 0.2923
     },
     {
       "rank": 22,
@@ -314,8 +314,8 @@
       "reversion": -0.6423,
       "sentiment": 0.7231,
       "value": 1.1036,
-      "growth": 4.0853,
-      "quality": -0.3564
+      "growth": 4.0854,
+      "quality": -0.3562
     },
     {
       "rank": 23,
@@ -328,8 +328,8 @@
       "reversion": 1.4332,
       "sentiment": 1.3525,
       "value": -0.9541,
-      "growth": 4.1387,
-      "quality": 0.8738
+      "growth": 4.1388,
+      "quality": 0.8741
     },
     {
       "rank": 24,
@@ -343,7 +343,7 @@
       "sentiment": -0.459,
       "value": 1.4833,
       "growth": -0.5269,
-      "quality": 3.12
+      "quality": 3.1204
     },
     {
       "rank": 25,
@@ -351,13 +351,13 @@
       "name": "Essex Property Trust",
       "sector": "Real Estate",
       "price": 264.18,
-      "composite": 0.6711,
+      "composite": 0.6712,
       "trend": -0.022,
       "reversion": 0.7107,
       "sentiment": -0.1257,
       "value": -0.1534,
-      "growth": -0.9243,
-      "quality": 4.173
+      "growth": -0.9244,
+      "quality": 4.1734
     },
     {
       "rank": 26,
@@ -371,7 +371,7 @@
       "sentiment": 1.2206,
       "value": -0.504,
       "growth": 1.0564,
-      "quality": -0.0136
+      "quality": -0.0134
     },
     {
       "rank": 27,
@@ -379,13 +379,13 @@
       "name": "Erie Indemnity",
       "sector": "Financials",
       "price": 261.39,
-      "composite": 0.6523,
+      "composite": 0.6524,
       "trend": -0.8037,
       "reversion": -0.9254,
       "sentiment": 1.2193,
       "value": 5.8288,
-      "growth": -0.8089,
-      "quality": 0.356
+      "growth": -0.8091,
+      "quality": 0.3563
     },
     {
       "rank": 28,
@@ -398,8 +398,8 @@
       "reversion": -0.1941,
       "sentiment": -0.4652,
       "value": 4.8094,
-      "growth": -0.329,
-      "quality": 0.1885
+      "growth": -0.3291,
+      "quality": 0.1887
     },
     {
       "rank": 29,
@@ -412,8 +412,8 @@
       "reversion": -0.5698,
       "sentiment": -0.3977,
       "value": 0.9365,
-      "growth": 4.4869,
-      "quality": -0.3318
+      "growth": 4.4868,
+      "quality": -0.3316
     },
     {
       "rank": 30,
@@ -425,9 +425,9 @@
       "trend": 0.2195,
       "reversion": -0.4709,
       "sentiment": 1.1663,
-      "value": 2.3235,
-      "growth": 0.0255,
-      "quality": 0.3238
+      "value": 2.3234,
+      "growth": 0.0254,
+      "quality": 0.324
     }
   ],
   "modelTop10": {
