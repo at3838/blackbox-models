@@ -118,9 +118,10 @@ const MODELS = [
   ["spy","SPY 基準", "#9aa4b2"]
 ];
 const SECTOR = {"Information Technology":"資訊科技","Energy":"能源","Financials":"金融","Real Estate":"房地產","Industrials":"工業","Communication Services":"通訊服務","Health Care":"醫療保健","Consumer Discretionary":"非必需消費","Consumer Staples":"必需消費","Materials":"原材料","Utilities":"公用事業"};
-const fmt = (x,d=2)=> (x>0?"+":"") + x.toFixed(d);
+const fmt = (x,d=2)=> (x==null||!isFinite(x)) ? "—" : (x>0?"+":"") + x.toFixed(d);
 const pct = x => (x*100).toFixed(1)+"%";
-function scoreCell(v){ const c = v>=0? "pos":"neg"; return `<td class="${c}">${fmt(v)}</td>`; }
+function scoreCell(v){ if(v==null||!isFinite(v)) return `<td>—</td>`; const c = v>=0? "pos":"neg"; return `<td class="${c}">${fmt(v)}</td>`; }
+const priceFmt = p => (p==null||!isFinite(p)) ? "—" : p.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 
 fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
   const upd = new Date(d.updatedAt);
@@ -136,7 +137,7 @@ fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
     <td>${r.rank}</td>
     <td class="l"><span class="sym">${r.symbol}</span><span class="nm">${r.name}</span></td>
     <td class="l">${SECTOR[r.sector]||r.sector}</td>
-    <td>${r.price.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2})}</td>
+    <td>${priceFmt(r.price)}</td>
     <td class="comp">${fmt(r.composite)}</td>
     ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}
   </tr>`).join("");
