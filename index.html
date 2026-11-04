@@ -68,6 +68,11 @@
   #top30 td.stk{padding:0;}
   #top30 td.stk a{display:block; padding:10px 12px; color:inherit; text-decoration:none;}
   #top30 td.stk .sym{text-decoration:underline; text-decoration-color:var(--green); text-decoration-thickness:2px; text-underline-offset:4px;}
+  /* 股票欄唔好俾長公司名撐闊：電腦版名過長用 … 截斷，電話版淨係出代號（同 space-6 app 一樣） */
+  #top30 td.stk .nm{max-width:9rem; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  @media (max-width:640px){
+    #top30 td.stk .nm{display:none;}
+  }
   /* 板塊分佈固定格線：名 5.25rem、bar 自適應、標籤 6.5rem 唔斷行右對齊 */
   .seclist{list-style:none;}
   .seclist li{display:grid; grid-template-columns:5.25rem minmax(0,1fr) 6.5rem; align-items:center; gap:8px; padding:6px 0; font-size:15.5px;}
