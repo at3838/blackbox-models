@@ -100,15 +100,17 @@
   <div class="scroll"><table id="top30">
     <thead><tr>
       <th>#</th><th class="l">股票</th><th class="l">板塊</th><th>現價 ($)</th><th>綜合分</th>
-      <th>趨勢</th><th>均值回歸</th><th>技術情緒</th><th>價值</th><th>增長</th><th>質量</th>
+      <th>趨勢</th><th>均值回歸</th><th>技術情緒</th><th>價值</th><th>增長</th><th>質量</th><th>ML（Ridge）</th><th>ML（LightGBM）</th>
     </tr></thead><tbody></tbody>
   </table></div>
 
   <h2>今日 Top 30 板塊分佈</h2>
   <div class="card" id="sectors"></div>
 
-  <h2>六個模型各自 Top 10</h2>
+  <h2>各模型 Top 10</h2>
   <div class="grid" id="models"></div>
+
+  <div id="mlNote"></div>
 
   <h2>回測比較 <span class="small">月度再平衡、各模型 Top 30 等權重、交易成本 0.10%、基本面用 SEC EDGAR 當時已申報數據</span></h2>
   <div class="chartbox">
@@ -174,7 +176,7 @@ fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
     <td class="l">${SECTOR[r.sector]||r.sector}</td>
     <td>${priceFmt(r.price)}</td>
     <td class="comp">${fmt(r.composite)}</td>
-    ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}
+    ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}${scoreCell(r.mlRidge)}${scoreCell(r.mlGbm)}
   </tr>`).join("");
 
   const secEl = document.getElementById("sectors");
@@ -190,10 +192,24 @@ fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
   }
 
   const mg = document.getElementById("models");
-  mg.innerHTML = MODELS.filter(m=>m[0]!=="spy").map(([k,label,color])=>{
+  const baseCards = MODELS.filter(m=>m[0]!=="spy").map(([k,label,color])=>{
     const items = (d.modelTop10[k]||[]).map(([s,v],i)=>`<li><span>${i+1}. <b><a class="ticker" href="${yahooUrl(s)}" target="_blank" rel="noopener" aria-label="${s} — Yahoo Finance" title="${s} — Yahoo Finance">${s}</a></b></span><span class="s">${fmt(v)}</span></li>`).join("");
     return `<div class="card"><h3><span class="dot" style="background:${color}"></span>${label}</h3><ol>${items}</ol></div>`;
   }).join("");
+  const mlCards = [["ml_ridge","ML（Ridge）","#e57373"],["ml_gbm","ML（LightGBM）","#81d4fa"]].map(([k,label,color])=>{
+    const items = (d.modelTop10[k]||[]).map(([s,v],i)=>`<li><span>${i+1}. <b><a class="ticker" href="${yahooUrl(s)}" target="_blank" rel="noopener" aria-label="${s} — Yahoo Finance" title="${s} — Yahoo Finance">${s}</a></b></span><span class="s">${fmt(v)}</span></li>`).join("");
+    return `<div class="card"><h3><span class="dot" style="background:${color}"></span>${label}</h3>${items?`<ol>${items}</ol>`:`<p class="note">未有數據</p>`}</div>`;
+  }).join("");
+  mg.innerHTML = baseCards + mlCards;
+
+  const mlNote = document.getElementById("mlNote");
+  if(d.ml && d.ml.available){
+    const icR = (d.ml.ic||[]).find(x=>x.key==="ml_ridge"), icG = (d.ml.ic||[]).find(x=>x.key==="ml_gbm");
+    const icOk = icR && icG && isFinite(icR.meanIc) && isFinite(icG.meanIc);
+    const sigPhrase = !icOk ? "評估數據未齊。" : ([icR,icG].every(x=>x.ciLow<=0 && x.ciHigh>=0) ? "兩個 95% 區間都包括零，未證實。" : "至少一個 95% 區間唔包括零。");
+    mlNote.className = "card";
+    mlNote.innerHTML = `<h3>ML 評估狀態</h3><p>機器學習層（跟 Stefan Jansen《Machine Learning for Trading》第三版：預測未來 21 個交易日相對回報橫截面排名、purged walk-forward）訓練截至 ${d.ml.trainedAsOf}；評估 ${d.ml.firstMonth} 至 ${d.ml.lastDecisionMonth}，共 ${d.ml.evaluatedMonths} 個月，Ridge λ=${d.ml.ridgeLambda}、GBM ${d.ml.gbmConfigDesc}、${d.ml.featureCount} 個特徵。平均 IC：Ridge ${fmt(icR&&icR.meanIc,4)}、LightGBM ${fmt(icG&&icG.meanIc,4)}。${sigPhrase}今日排名嘅 ML 分數暫時未出（Top 30 顯示 —，Top 10 未有數據），等每日 refresh 跑埋 pending 步驟之後先有實數。</p>`;
+  }
 
   // stats table
   const sb = document.querySelector("#stats tbody");
