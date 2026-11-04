@@ -57,6 +57,27 @@
   .explain .card p b{color:var(--txt);}
   footer{margin-top:36px; color:var(--dim); font-size:14.5px; border-top:1px solid var(--line); padding-top:14px;}
   .err{background:#3a1420; border:1px solid var(--red); color:#ffd7dc; padding:14px; border-radius:10px; font-size:16px;}
+  /* Top30 橫碌固定欄：名次欄 + 股票欄企定唔跟住碌走 */
+  #top30 th:first-child, #top30 td:first-child{position:sticky; left:0; z-index:10; width:48px; min-width:48px;}
+  #top30 th:first-child{z-index:30;}
+  #top30 td:first-child{background:var(--panel);}
+  #top30 th:nth-child(2), #top30 td:nth-child(2){position:sticky; left:48px; z-index:20;}
+  #top30 th:nth-child(2){background:var(--panel2);}
+  #top30 td:nth-child(2){background:var(--panel); border-right:1px solid var(--line);}
+  /* 股票格成格撳得去 Yahoo Finance */
+  #top30 td.stk{padding:0;}
+  #top30 td.stk a{display:block; padding:10px 12px; color:inherit; text-decoration:none;}
+  #top30 td.stk .sym{text-decoration:underline; text-decoration-color:var(--green); text-decoration-thickness:2px; text-underline-offset:4px;}
+  /* 板塊分佈固定格線：名 5.25rem、bar 自適應、標籤 6.5rem 唔斷行右對齊 */
+  .seclist{list-style:none;}
+  .seclist li{display:grid; grid-template-columns:5.25rem minmax(0,1fr) 6.5rem; align-items:center; gap:8px; padding:6px 0; font-size:15.5px;}
+  .seclist .secname{min-width:0; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;}
+  .seclist .secbar{position:relative; height:14px; min-width:0; overflow:hidden; border-radius:6px; background:var(--panel2);}
+  .seclist .secbar span{position:absolute; top:0; bottom:0; left:0; border-radius:6px; background:var(--green);}
+  .seclist .secnum{display:flex; align-items:baseline; justify-content:flex-end; white-space:nowrap; text-align:right; font-variant-numeric:tabular-nums;}
+  .seclist .seccount{display:inline-block; width:2.75rem; text-align:right; flex-shrink:0;}
+  .seclist .secdot{flex-shrink:0; color:var(--dim); margin:0 2px;}
+  .seclist .secpct{display:inline-block; width:2.25rem; text-align:right; flex-shrink:0;}
 </style>
 </head>
 <body>
@@ -72,6 +93,9 @@
       <th>趨勢</th><th>均值回歸</th><th>技術情緒</th><th>價值</th><th>增長</th><th>質量</th>
     </tr></thead><tbody></tbody>
   </table></div>
+
+  <h2>今日 Top 30 板塊分佈</h2>
+  <div class="card" id="sectors"></div>
 
   <h2>六個模型各自 Top 10</h2>
   <div class="grid" id="models"></div>
@@ -121,6 +145,7 @@ const SECTOR = {"Information Technology":"資訊科技","Energy":"能源","Finan
 const fmt = (x,d=2)=> (x==null||!isFinite(x)) ? "—" : (x>0?"+":"") + x.toFixed(d);
 const pct = x => (x*100).toFixed(1)+"%";
 function scoreCell(v){ if(v==null||!isFinite(v)) return `<td>—</td>`; const c = v>=0? "pos":"neg"; return `<td class="${c}">${fmt(v)}</td>`; }
+const yahooUrl = s => "https://finance.yahoo.com/quote/" + encodeURIComponent(s.replace(/\./g, "-"));
 const priceFmt = p => (p==null||!isFinite(p)) ? "—" : p.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 
 fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
@@ -135,12 +160,24 @@ fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
   const tb = document.querySelector("#top30 tbody");
   tb.innerHTML = d.top30.map(r=>`<tr>
     <td>${r.rank}</td>
-    <td class="l"><span class="sym">${r.symbol}</span><span class="nm">${r.name}</span></td>
+    <td class="l stk"><a href="${yahooUrl(r.symbol)}" target="_blank" rel="noopener" aria-label="${r.symbol} — Yahoo Finance" title="${r.symbol} — Yahoo Finance"><span class="sym">${r.symbol}</span><span class="nm">${r.name}</span></a></td>
     <td class="l">${SECTOR[r.sector]||r.sector}</td>
     <td>${priceFmt(r.price)}</td>
     <td class="comp">${fmt(r.composite)}</td>
     ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}
   </tr>`).join("");
+
+  const secEl = document.getElementById("sectors");
+  if(d.top30 && d.top30.length){
+    const secCount = {};
+    d.top30.forEach(r => { secCount[r.sector] = (secCount[r.sector]||0)+1; });
+    const secRows = Object.entries(secCount).map(([sector, count]) => ({sector, count, pct: count/d.top30.length}))
+      .sort((a,b) => b.count - a.count || (a.sector < b.sector ? -1 : 1));
+    secEl.innerHTML = `<ul class="seclist">${secRows.map(x => `
+      <li><span class="secname">${SECTOR[x.sector]||x.sector}</span><span class="secbar"><span style="width:${Math.max(3, x.pct*100)}%"></span></span><span class="secnum"><span class="seccount">${x.count} 隻</span><span class="secdot">・</span><span class="secpct">${Math.round(x.pct*100)}%</span></span></li>`).join("")}</ul>`;
+  } else {
+    secEl.innerHTML = `<p class="note">未有分佈數據</p>`;
+  }
 
   const mg = document.getElementById("models");
   mg.innerHTML = MODELS.filter(m=>m[0]!=="spy").map(([k,label,color])=>{
