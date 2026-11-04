@@ -47,6 +47,7 @@
   .card li{display:flex; justify-content:space-between; padding:4px 0; font-size:16.5px; border-top:1px dashed rgba(255,255,255,.06);}
   .card li:first-child{border-top:none;}
   .card li .s{color:var(--dim);}
+  .card li a.ticker{color:inherit; text-decoration:underline; text-decoration-color:var(--green); text-decoration-thickness:2px; text-underline-offset:3px;}
   .chartbox{background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:14px;}
   .legend{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px;}
   .legend label{font-size:15.5px; background:var(--panel2); border:1px solid var(--line); border-radius:20px; padding:4px 12px; cursor:pointer; user-select:none;}
@@ -186,7 +187,7 @@ fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
 
   const mg = document.getElementById("models");
   mg.innerHTML = MODELS.filter(m=>m[0]!=="spy").map(([k,label,color])=>{
-    const items = (d.modelTop10[k]||[]).map(([s,v],i)=>`<li><span>${i+1}. <b>${s}</b></span><span class="s">${fmt(v)}</span></li>`).join("");
+    const items = (d.modelTop10[k]||[]).map(([s,v],i)=>`<li><span>${i+1}. <b><a class="ticker" href="${yahooUrl(s)}" target="_blank" rel="noopener" aria-label="${s} — Yahoo Finance" title="${s} — Yahoo Finance">${s}</a></b></span><span class="s">${fmt(v)}</span></li>`).join("");
     return `<div class="card"><h3><span class="dot" style="background:${color}"></span>${label}</h3><ol>${items}</ol></div>`;
   }).join("");
 
