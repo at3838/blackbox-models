@@ -100,7 +100,7 @@
   <div class="scroll"><table id="top30">
     <thead><tr>
       <th>#</th><th class="l">股票</th><th>現價 ($)</th><th>一日升跌</th><th class="l">板塊</th><th>綜合分</th>
-      <th>趨勢</th><th>均值回歸</th><th>技術情緒</th><th>價值</th><th>增長</th><th>質量</th><th>ML（Ridge）</th><th>ML（LightGBM）</th>
+      <th>趨勢</th><th>均值回歸</th><th>技術情緒</th><th>價值</th><th>增長</th><th>質量</th><th>低波動</th><th>ML（Ridge）</th><th>ML（LightGBM）</th>
     </tr></thead><tbody></tbody>
   </table></div>
 
@@ -131,13 +131,14 @@
     <div class="card"><h3>價值／收益率 Value/Yield</h3><p>第三章基本面策略：書中強調用收益率形式而唔用市盈率本身。實作：盈利收益率 E/P、賬面值／市值 B/P、自由現金流收益率、股息率，全部用 EDGAR 當時已申報數字計。</p></div>
     <div class="card"><h3>增長 Growth</h3><p>第三章基本面策略：增長強嘅公司多數正喺度贏緊市場份額。實作：TTM 收入同 EPS 對上年同期嘅增長率（只用當時已知版本）；分析師修訂係書中講嘅情緒變體，呢度冇用。</p></div>
     <div class="card"><h3>質量 Quality</h3><p>第三章基本面策略：低槓桿、盈利穩定、盈利質量高嘅公司喺壓力市況較捱得住。實作：負債／股東權益（愈低愈好）、ROE、過去 8 季盈利穩定度、淨利率。</p></div>
+    <div class="card"><h3>低波動 Low Volatility</h3><p>2026 年 10 月 21 日加入嘅第七個因子：波動細嘅股票捱跌嗰陣通常跌得少。實作：過去 252 日同 126 日股價波動率（愈低愈好），取負號再合成 z-score。</p></div>
     <div class="card"><h3>混合 Blending</h3><p>第三章「Blending Alpha Models」：線性混合係最常用做法，綜合分 = 七個因子 z-score 嘅加權和；呢度用等權重版本（書中特別提及嘅特例），唔用回歸權重，避免過度擬合歷史。</p></div>
     <div class="card"><h3>組合建構</h3><p>第六章規則型組合建構：綜合分頭 30 隻、每隻等權重（1/30），每月再平衡。冇用優化器，因為輸入估計誤差大嗰陣，等權重通常更穩健——亦係書中嘅取態。</p></div>
   </div>
 
   <footer>
     <p>數據來源：股價 Yahoo Finance；基本面 SEC EDGAR as-reported 時點數據（以申報 filed 日期為準，唔用日後修訂版）；歷史成分股快照處理倖存者偏差（最新快照 <span id="memb"></span>）。</p>
-    <p style="margin-top:6px;">限制：回測由 2022 年 11 月起（47 次月度再平衡），窗口唔算長，嗰段市況對價值同動量較順風，成績唔好當長期定論；市值用當時申報股數近似；已退市股票嘅價格數據可能缺失。本頁只係跟書實作嘅研究工具，唔係買賣建議，歷史回測唔代表未來表現。</p>
+    <p style="margin-top:6px;">限制：回測由 2013 年 1 月起（166 次月度再平衡），成績唔好當長期定論；市值用當時申報股數近似；已退市股票嘅價格數據可能缺失。本頁只係跟書實作嘅研究工具，唔係買賣建議，歷史回測唔代表未來表現。</p>
     <p style="margin-top:6px;">iPhone 加落主畫面：用 Safari 開呢頁 → 㩒分享掣 → 「加入主畫面」，之後一撳圖示就睇到最新數據。</p>
   </footer>
 </div>
@@ -151,6 +152,7 @@ const MODELS = [
   ["value","價值", "#2ebd85"],
   ["growth","增長", "#f6465d"],
   ["quality","質量", "#f0a35e"],
+  ["lowvol","低波動", "#26c6da"],
   ["spy","SPY 基準", "#9aa4b2"]
 ];
 const SECTOR = {"Information Technology":"資訊科技","Energy":"能源","Financials":"金融","Real Estate":"房地產","Industrials":"工業","Communication Services":"通訊服務","Health Care":"醫療保健","Consumer Discretionary":"非必需消費","Consumer Staples":"必需消費","Materials":"原材料","Utilities":"公用事業"};
@@ -178,7 +180,7 @@ fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
     ${chgCell(r.chgPct)}
     <td class="l">${SECTOR[r.sector]||r.sector}</td>
     <td class="comp">${fmt(r.composite)}</td>
-    ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}${scoreCell(r.mlRidge)}${scoreCell(r.mlGbm)}
+    ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}${scoreCell(r.lowvol)}${scoreCell(r.mlRidge)}${scoreCell(r.mlGbm)}
   </tr>`).join("");
 
   const secEl = document.getElementById("sectors");
