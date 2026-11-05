@@ -99,7 +99,7 @@
   <h2>今日綜合選股 Top 30 <span class="small">分數係橫截面 z-score，正數＝跑贏全市場平均；組合建議：30 隻等權重</span></h2>
   <div class="scroll"><table id="top30">
     <thead><tr>
-      <th>#</th><th class="l">股票</th><th class="l">板塊</th><th>現價 ($)</th><th>綜合分</th>
+      <th>#</th><th class="l">股票</th><th>現價 ($)</th><th>一日升跌</th><th class="l">板塊</th><th>綜合分</th>
       <th>趨勢</th><th>均值回歸</th><th>技術情緒</th><th>價值</th><th>增長</th><th>質量</th><th>ML（Ridge）</th><th>ML（LightGBM）</th>
     </tr></thead><tbody></tbody>
   </table></div>
@@ -157,6 +157,7 @@ const SECTOR = {"Information Technology":"資訊科技","Energy":"能源","Finan
 const fmt = (x,d=2)=> (x==null||!isFinite(x)) ? "—" : (x>0?"+":"") + x.toFixed(d);
 const pct = x => (x*100).toFixed(1)+"%";
 function scoreCell(v){ if(v==null||!isFinite(v)) return `<td>—</td>`; const c = v>=0? "pos":"neg"; return `<td class="${c}">${fmt(v)}</td>`; }
+function chgCell(v){ if(v==null||!isFinite(v)) return `<td>—</td>`; const c = v>=0? "pos":"neg"; return `<td class="${c}">${(v>0?"+":"")+(v*100).toFixed(1)}%</td>`; }
 const yahooUrl = s => "https://finance.yahoo.com/quote/" + encodeURIComponent(s.replace(/\./g, "-"));
 const priceFmt = p => (p==null||!isFinite(p)) ? "—" : p.toLocaleString("en-US",{minimumFractionDigits:2, maximumFractionDigits:2});
 
@@ -173,8 +174,9 @@ fetch("data.json", {cache:"no-store"}).then(r=>r.json()).then(d=>{
   tb.innerHTML = d.top30.map(r=>`<tr>
     <td>${r.rank}</td>
     <td class="l stk"><a href="${yahooUrl(r.symbol)}" target="_blank" rel="noopener" aria-label="${r.symbol} — Yahoo Finance" title="${r.symbol} — Yahoo Finance"><span class="sym">${r.symbol}</span><span class="nm">${r.name}</span></a></td>
-    <td class="l">${SECTOR[r.sector]||r.sector}</td>
     <td>${priceFmt(r.price)}</td>
+    ${chgCell(r.chgPct)}
+    <td class="l">${SECTOR[r.sector]||r.sector}</td>
     <td class="comp">${fmt(r.composite)}</td>
     ${scoreCell(r.trend)}${scoreCell(r.reversion)}${scoreCell(r.sentiment)}${scoreCell(r.value)}${scoreCell(r.growth)}${scoreCell(r.quality)}${scoreCell(r.mlRidge)}${scoreCell(r.mlGbm)}
   </tr>`).join("");
